@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Flipkart style e-commerce homepage"
+    >
+
+    <title>Flipkart - Online Shopping</title>
+
+    <style>
+
+        /* =========================================================
+           RESET & GLOBAL
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f3f6;
+            color: #212121;
+            line-height: 1.4;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .header {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .top-row {
+            min-height: 70px;
+            padding: 10px 48px;
+
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+
+        /* LOGO */
+
+        .flipkart-logo {
+            width: 300px;
+            height: 54px;
+
+            flex-shrink: 0;
+
+            background: #ffe51f;
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-content {
+            text-align: center;
+            color: #2874f0;
+            font-weight: 900;
+        }
+
+        .logo-symbol {
+            font-size: 30px;
+            line-height: 25px;
+            font-style: italic;
+        }
+
+        .logo-text {
+            color: #111;
+            font-size: 15px;
+            font-style: italic;
+        }
+
+
+        /* TRAVEL */
+
+        .travel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+
+        .plane {
+            color: #ff6347;
+            font-size: 27px;
+        }
+
+        .travel span {
+            font-weight: bold;
+            font-style: italic;
+        }
+
+
+        /* LOCATION */
+
+        .location {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        .location-icon {
+            color: #222;
+            font-size: 18px;
+        }
+
+        .location-text {
+            font-weight: bold;
+        }
+
+        .select-location {
+            color: #2874f0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .arrow {
+            color: #2874f0;
+            font-size: 22px;
+        }
+
+
+        /* =========================================================
+           SEARCH ROW
+        ========================================================= */
+
+        .search-row {
+            min-height: 84px;
+            padding: 12px 48px;
+
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .search-box {
+            height: 54px;
+            flex: 1;
+
+            border: 2px solid #2874f0;
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .search-icon {
+            width: 55px;
+            flex-shrink: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 25px;
+            color: #555;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 100%;
+
+            border: none;
+            outline: none;
+
+            padding: 0 10px;
+
+            font-size: 17px;
+        }
+
+        .search-box input::placeholder {
+            color: #666;
+        }
+
+
+        /* LOGIN */
+
+        .login {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .user-icon {
+            width: 25px;
+            height: 25px;
+
+            border: 2px solid #222;
+            border-radius: 50%;
+
+            position: relative;
+        }
+
+        .user-icon::before {
+            content: "";
+
+            position: absolute;
+
+            width: 7px;
+            height: 7px;
+
+            border: 1.5px solid #222;
+            border-radius: 50%;
+
+            left: 7px;
+            top: 4px;
+        }
+
+        .user-icon::after {
+            content: "";
+
+            position: absolute;
+
+            width: 13px;
+            height: 6px;
+
+            border: 1.5px solid #222;
+            border-radius: 10px 10px 0 0;
+
+            left: 4px;
+            bottom: 3px;
+        }
+
+
+        /* MORE */
+
+        .more {
+            white-space: nowrap;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .down-arrow {
+            font-size: 18px;
+            margin-left: 3px;
+        }
+
+
+        /* CART */
+
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            white-space: nowrap;
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            font-size: 26px;
+        }
+
+
+        /* =========================================================
+           CATEGORY BAR
+        ========================================================= */
+
+        .category-bar {
+            min-height: 97px;
+
+            padding: 0 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #ffffff;
+
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .category {
+            min-width: 80px;
+            height: 96px;
+
+            padding: 8px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .category-icon {
+            width: 55px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+
+            border-radius: 10px;
+
+            margin-bottom: 5px;
+        }
+
+        .category-name {
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        .category.active {
+            font-weight: bold;
+        }
+
+        .category.active::after {
+            content: "";
+
+            position: absolute;
+
+            width: 82px;
+            height: 4px;
+
+            bottom: 0;
+
+            background: #2874f0;
+
+            border-radius: 5px 5px 0 0;
+        }
+
+        .category.active .category-icon {
+            background: linear-gradient(
+                #dceeff,
+                #ffffff
+            );
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        .main-content {
+            width: 100%;
+            padding: 20px 48px;
+        }
+
+        .content-section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            margin-bottom: 18px;
+
+            font-size: 25px;
+            font-weight: 700;
+
+            color: #212121;
+        }
+
+
+        /* =========================================================
+           HERO BANNERS
+        ========================================================= */
+
+        .banner-row {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(300px, 1fr));
+
+            gap: 25px;
+
+            overflow: hidden;
+        }
+
+        .banner {
+            min-height: 220px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            padding: 35px;
+        }
+
+        .banner.one {
+            background:
+                linear-gradient(
+                    120deg,
+                    #42d994,
+                    #19a9d9
+                );
+        }
+
+        .banner.two {
+            background:
+                linear-gradient(
+                    120deg,
+                    #3ed594,
+                    #24a9db
+                );
+        }
+
+        .banner.three {
+            background:
+                linear-gradient(
+                    120deg,
+                    #8ed7ff,
+                    #a7dcff
+                );
+        }
+
+        .banner-title {
+            color: #ffffff;
+
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .banner-subtitle {
+            margin-top: 8px;
+
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+
+        /* =========================================================
+           PRODUCT IMAGE GRID
+        ========================================================= */
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(150px, 1fr));
+
+            gap: 15px;
+
+            align-items: stretch;
+        }
+
+        .product-card {
+            background: #ffffff;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            min-height: 180px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+
+            object-fit: contain;
+
+            border-radius: 8px;
+        }
+
+
+        /* =========================================================
+           FEATURE CARDS
+        ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 330px;
+
+            object-fit: cover;
+        }
+
+
+        /* =========================================================
+           LARGE BANNERS
+        ========================================================= */
+
+        .wide-banner {
+            width: 100%;
+
+            background: #ffffff;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+        }
+
+        .wide-banner img {
+            width: 100%;
+            height: auto;
+
+            max-height: 500px;
+
+            object-fit: cover;
+        }
+
+
+        /* =========================================================
+           MIXED CARD SECTION
+        ========================================================= */
+
+        .mixed-grid {
+            display: grid;
+
+            grid-template-columns:
+                2fr repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .mixed-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+        }
+
+        .mixed-card.large {
+            grid-row: span 2;
+        }
+
+        .mixed-card img {
+            width: 100%;
+            height: 300px;
+
+            object-fit: cover;
+        }
+
+        .mixed-card.large img {
+            height: 615px;
+        }
+
+
+        /* =========================================================
+           DAILY DEALS
+        ========================================================= */
+
+        .deals-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .deal-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            min-height: 300px;
+        }
+
+        .deal-card img {
+            width: 100%;
+            height: 300px;
+
+            object-fit: cover;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .flipkart-footer {
+            margin-top: 50px;
+
+            background: #212121;
+            color: #ffffff;
+        }
+
+        .footer-main {
+            min-height: 285px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr 1fr 1.3fr 1.6fr 1.8fr;
+
+            gap: 30px;
+
+            padding: 40px 64px 30px;
+        }
+
+        .footer-column {
+            min-width: 0;
+        }
+
+        .footer-title {
+            color: #878787;
+
+            font-size: 12px;
+            font-weight: 500;
+
+            margin-bottom: 14px;
+
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            display: block;
+
+            color: #f1f1f1;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            line-height: 20px;
+
+            margin-bottom: 2px;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-address {
+            padding-left: 30px;
+
+            border-left: 1px solid #454545;
+        }
+
+        .footer-address p {
+            color: #f1f1f1;
+
+            font-size: 12px;
+            line-height: 18px;
+
+            margin-bottom: 12px;
+        }
+
+        .social-title {
+            color: #878787;
+
+            font-size: 12px;
+
+            margin-bottom: 12px;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .social-icons span {
+            color: #ffffff;
+
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+
+        /* FOOTER BOTTOM */
+
+        .footer-bottom {
+            min-height: 70px;
+
+            padding: 18px 64px;
+
+            border-top: 1px solid #454545;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+        .footer-bottom-left {
+            display: flex;
+            align-items: center;
+
+            gap: 35px;
+
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+        }
+
+        .footer-bottom-icon {
+            color: #ffd700;
+            font-size: 15px;
+        }
+
+        .copyright {
+            color: #ffffff;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+        }
+
+
+        /* PAYMENT */
+
+        .payment-methods {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            flex-wrap: wrap;
+        }
+
+        .payment {
+            min-width: 40px;
+            min-height: 20px;
+
+            padding: 3px 5px;
+
+            background: #ffffff;
+            color: #222;
+
+            border-radius: 2px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            font-size: 7px;
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1200px) {
+
+            .top-row,
+            .search-row {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .main-content {
+                padding: 20px 25px;
+            }
+
+            .flipkart-logo {
+                width: 240px;
+            }
+
+            .banner-row {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .deals-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .footer-main {
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+                padding: 35px 30px;
+            }
+
+            .footer-address {
+                padding-left: 0;
+                border-left: none;
+            }
+
+            .footer-bottom {
+                padding: 20px 30px;
+
+                flex-wrap: wrap;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .top-row {
+                padding: 10px 15px;
+
+                flex-wrap: wrap;
+            }
+
+            .flipkart-logo {
+                width: 220px;
+            }
+
+            .travel {
+                display: none;
+            }
+
+            .location {
+                margin-left: auto;
+
+                font-size: 12px;
+            }
+
+            .search-row {
+                padding: 10px 15px;
+
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                width: 100%;
+                flex-basis: 100%;
+            }
+
+            .login,
+            .more,
+            .cart {
+                margin-bottom: 5px;
+            }
+
+            .category-bar {
+                padding: 0 15px;
+
+                justify-content: flex-start;
+
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .banner-row {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .mixed-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .mixed-card.large {
+                grid-row: auto;
+            }
+
+            .mixed-card.large img {
+                height: 300px;
+            }
+
+            .deals-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .footer-main {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                padding: 30px 20px;
+            }
+
+            .footer-bottom {
+                padding: 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .footer-bottom-left {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .flipkart-logo {
+                width: 180px;
+            }
+
+            .location-text,
+            .select-location {
+                display: none;
+            }
+
+            .feature-grid,
+            .deals-grid,
+            .mixed-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                width: 100%;
+            }
+        }
+
+
+        /* =========================================================
+           LOGIN PAGE
+        ========================================================= */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px;
+            background: linear-gradient(135deg, #2874f0 0%, #1557c0 55%, #f1f3f6 55%, #f1f3f6 100%);
+        }
+        .login-card {
+            width: min(960px, 100%);
+            min-height: 560px;
+            display: grid;
+            grid-template-columns: 42% 58%;
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.18);
+        }
+        .login-brand {
+            padding: 45px 38px;
+            color: #fff;
+            background: linear-gradient(160deg,#2874f0,#1557c0);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .login-brand .brand-logo {
+            display: inline-flex;
+            width: 190px;
+            height: 52px;
+            align-items: center;
+            justify-content: center;
+            background: #ffe51f;
+            border-radius: 12px;
+            color: #111;
+            font-size: 20px;
+            font-weight: 900;
+            font-style: italic;
+        }
+        .login-brand h1 { margin-top: 50px; font-size: 34px; line-height: 1.15; }
+        .login-brand p { margin-top: 14px; color: rgba(255,255,255,.9); font-size: 16px; line-height: 1.6; }
+        .login-benefits { margin-top: 28px; display: grid; gap: 14px; }
+        .login-benefits div { font-size: 14px; }
+        .login-form-page { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+        .login-form-page h2 { font-size: 28px; margin-bottom: 8px; }
+        .login-form-page .subtitle { color: #666; margin-bottom: 28px; font-size: 14px; }
+        .login-field { margin-bottom: 17px; }
+        .login-field label { display:block; margin-bottom:7px; font-size:13px; font-weight:700; color:#333; }
+        .login-field input {
+            width:100%; height:48px; border:1px solid #d5d9df; border-radius:9px;
+            padding:0 13px; outline:none; transition:.2s;
+        }
+        .login-field input:focus { border-color:#2874f0; box-shadow:0 0 0 3px rgba(40,116,240,.12); }
+        .login-password { position:relative; }
+        .login-password input { padding-right:62px; }
+        .toggle-password {
+            position:absolute; right:10px; top:50%; transform:translateY(-50%);
+            border:0; background:transparent; color:#2874f0; font-weight:700; cursor:pointer;
+        }
+        .login-submit-page {
+            width:100%; height:49px; border:0; border-radius:9px;
+            background:#ff9f00; color:#fff; font-size:16px; font-weight:800; cursor:pointer;
+            margin-top:5px;
+        }
+        .login-submit-page:hover { background:#f39200; }
+        .login-page-message { min-height:21px; margin-top:12px; text-align:center; font-size:13px; }
+        .login-page-message.error { color:#d32f2f; }
+        .login-page-message.success { color:#188038; }
+        .login-back { display:inline-block; margin-top:20px; text-align:center; color:#2874f0; font-size:14px; font-weight:700; }
+        .login-demo-note { margin-top:18px; color:#777; text-align:center; font-size:11px; line-height:1.5; }
+        @media (max-width:700px) {
+            .login-card { grid-template-columns:1fr; }
+            .login-brand { min-height:260px; padding:28px; }
+            .login-brand h1 { margin-top:25px; font-size:28px; }
+            .login-benefits { display:none; }
+            .login-form-page { padding:30px 24px; }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="header">
+
+        <div class="top-row">
+
+            <a href="#" class="flipkart-logo">
+
+                <div class="logo-content">
+
+                    <div class="logo-symbol">
+                        f
+                    </div>
+
+                    <div class="logo-text">
+                        Flipkart
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <div class="travel">
+
+                <div class="plane">
+                    ✈
+                </div>
+
+                <span>
+                    Travel
+                </span>
+
+            </div>
+
+
+            <div class="location">
+
+                <span class="location-icon">
+                    ●
+                </span>
+
+                <span class="location-text">
+                    Location not set
+                </span>
+
+                <span class="select-location">
+                    Select delivery location
+                </span>
+
+                <span class="arrow">
+                    ›
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-row">
+
+            <div class="search-box">
+
+                <div class="search-icon">
+                    ⌕
+                </div>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search for Products, Brands and More"
+                >
+
+            </div>
+
+
+            <a class="login" href="login.html" aria-label="Open login page">
+                <div class="user-icon"></div>
+                <span>Login</span>
+                <span class="down-arrow">⌄</span>
+            </a>
+
+            <a href="More.html" class="more" aria-label="Open More page">
+               More
+               <span class="down-arrow">
+               ⌄
+               </span>
+                </a>
+
+            <a href="Cart.html" class="cart" aria-label="Open Cart">
+               <span class="cart-icon">
+                🛒
+               </span>
+               
+               <span>
+                Cart
+               </span>
+                </a>
+               </div>
+
+
+        <!-- CATEGORY BAR -->
+
+
+        <nav class="category-bar">
+<a href="for.html" class="category active" aria-label="Open For You page">
+    <div class="category-icon">🛍️</div>
+    <div class="category-name">For You</div>
+</a>
+
+
+<a href="fashion.html" class="category" aria-label="Open Fashion page">
+    <div class="category-icon">👕</div>
+    <div class="category-name">Fashion</div>
+</a>
+
+
+<a href="mobiles.html" class="category" aria-label="Open Mobiles page">
+    <div class="category-icon">📱</div>
+    <div class="category-name">Mobiles</div>
+</a>
+
+
+<a href="electronics.html" class="category" aria-label="Open Electronics page">
+    <div class="category-icon">💻</div>
+    <div class="category-name">Electronics</div>
+</a>
+
+
+<a href="beauty.html" class="category" aria-label="Open Beauty page">
+    <div class="category-icon">💄</div>
+    <div class="category-name">Beauty</div>
+</a>
+
+
+            <div class="category">
+                <div class="category-icon">🏠</div>
+                <div class="category-name">Home</div>
+            </div>
+
+
+<a href="Appliance.html" class="category" aria-label="Open Appliances page">
+    <div class="category-icon">📺</div>
+    <div class="category-name">Appliances</div>
+</a>
+
+<a href="Toys.html" class="category" aria-label="Open Toys page">
+    <div class="category-icon">🧸</div>
+    <div class="category-name">Toys</div>
+</a>
+
+<a href="Food.html" class="category" aria-label="Open Food page">
+    <div class="category-icon">🍔</div>
+    <div class="category-name">Food</div>
+</a>
+
+<a href="Auto.html" class="category" aria-label="Open Auto page">
+    <div class="category-icon">🚗</div>
+    <div class="category-name">Auto</div>
+</a>
+
+<a href="Sports.html" class="category" aria-label="Open Sports page">
+    <div class="category-icon">🏏</div>
+    <div class="category-name">Sports</div>
+</a>
+
+<a href="furniture.html" class="category" aria-label="Open Furniture page">
+    <div class="category-icon">🛋️</div>
+    <div class="category-name">Furniture</div>
+</a>  
+
+<a href="Books.html" class="category" aria-label="Open Books page">
+    <div class="category-icon">📚</div>
+    <div class="category-name">Books</div>
+</a>
+
+<a href="2 Wheeler.html" class="category" aria-label="Open 2 Wheelers page">
+    <div class="category-icon">🛵</div>
+    <div class="category-name">2 Wheelers</div>
+</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- HERO BANNERS -->
+
+        <section class="content-section">
+
+            <div class="banner-row">
+
+                <article class="banner one">
+
+                    <div>
+                        <h1 class="banner-title">
+                            Big Saving Days
+                        </h1>
+
+                        <p class="banner-subtitle">
+                            Deals you don't want to miss
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="banner two">
+
+                    <div>
+                        <h2 class="banner-title">
+                            Top Offers
+                        </h2>
+
+                        <p class="banner-subtitle">
+                            Shop now & save more
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="banner three">
+
+                    <div>
+                        <h2 class="banner-title">
+                            Special Deals
+                        </h2>
+
+                        <p class="banner-subtitle">
+                            Limited time offers
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRODUCT COLLECTION
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Top Picks For You
+            </h2>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/6e6851e1324e99e2.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/c0b632c11f98c5ec.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/2918210c3ade6d83.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/dd08ce24819679e5.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/8dc27b051bef913f.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/1f0f3ce437bdb28c.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/4c48ab7808491ea5.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/29a0856f8be430c0.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/ff98823a76884400.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/d675ca0a5c380354.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/196/196/image/91939d083646205d.jpg?q=60"
+                        alt="Product"
+                    >
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SHOP FOR LOVED ONES
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Shop For Loved Ones
+            </h2>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/1700/image/a22753b1dd41da56.jpg?q=60"
+                        alt="Loved ones collection"
+                    >
+                </article>
+
+                <article class="feature-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/1700/image/b34ceaa4772713c7.jpg?q=60"
+                        alt="Gift collection"
+                    >
+                </article>
+
+                <article class="feature-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/1700/image/8890c7ae880c5bb2.jpg?q=60"
+                        alt="Shopping collection"
+                    >
+                </article>
+
+                <article class="feature-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/8f1e480cfdd575d5.jpg?q=60"
+                        alt="Fashion collection"
+                    >
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TRENDS
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Trends To Look Out For
+            </h2>
+
+            <div class="mixed-grid">
+
+                <article class="mixed-card large">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/8f1e480cfdd575d5.jpg?q=60"
+                        alt="Trending products"
+                    >
+
+                </article>
+
+                <article class="mixed-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/de1ab37f5f5db801.jpg?q=60"
+                        alt="Trend"
+                    >
+
+                </article>
+
+                <article class="mixed-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/8cfb6cb825176b78.jpg?q=60"
+                        alt="Trend"
+                    >
+
+                </article>
+
+                <article class="mixed-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/81a69420ebdfeb1d.jpg?q=60"
+                        alt="Trend"
+                    >
+
+                </article>
+
+                <article class="mixed-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/196304f2f6d426b5.jpg?q=60"
+                        alt="Trend"
+                    >
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FULL WIDTH BANNER
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <div class="wide-banner">
+
+                <img
+                    src="https://rukminim2.flixcart.com/fk-p-flap/3140/700/image/5fc90017894773ec.jpg?q=60"
+                    alt="Special offer banner"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BUDGET BUYS
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Best Budget Buys
+            </h2>
+
+            <div class="deals-grid">
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/3200/4840/image/704afbf8e4e58f82.jpg?q=60"
+                        alt="Budget product"
+                    >
+                </article>
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/3200/4840/image/5fc3284b53bc98bd.jpg?q=60"
+                        alt="Budget product"
+                    >
+                </article>
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/3200/4840/image/4b53a28580e710a5.jpg?q=60"
+                        alt="Budget product"
+                    >
+                </article>
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/3200/4840/image/9c7df638d0959d23.jpg?q=60"
+                        alt="Budget product"
+                    >
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STYLE IN MOTION
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Style In Motion
+            </h2>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1668/2220/image/fdfba1eafb1e29a6.jpg?q=60"
+                        alt="Style"
+                    >
+
+                </article>
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1668/2220/image/c149e2ffa7bf5083.jpg?q=60"
+                        alt="Style"
+                    >
+
+                </article>
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1668/2220/image/7cd6d63ca018fdc8.jpg?q=60"
+                        alt="Style"
+                    >
+
+                </article>
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1668/2220/image/6300351ff2936402.jpg?q=60"
+                        alt="Style"
+                    >
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DAILY DEALS
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Daily Deals Drop
+            </h2>
+
+            <div class="deals-grid">
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/2140/image/841c39445bc5b176.jpg?q=60"
+                        alt="Daily deal"
+                    >
+                </article>
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/2140/image/954bdd7e6aca720b.jpg?q=60"
+                        alt="Daily deal"
+                    >
+                </article>
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/2140/image/307a98311a0a8ca2.jpg?q=60"
+                        alt="Daily deal"
+                    >
+                </article>
+
+                <article class="deal-card">
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/1600/2140/image/0e0ec630db1b6338.jpg?q=60"
+                        alt="Daily deal"
+                    >
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SHOP NOW PAY LATER
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Shop Now Pay Later
+            </h2>
+
+            <div class="deals-grid">
+
+                <article class="deal-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/1060/image/8827b6b397817b9d.jpg?q=60"
+                        alt="Shop now pay later"
+                    >
+
+                </article>
+
+                <article class="deal-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/1060/image/1337795720b2a733.jpg?q=60"
+                        alt="Shop now pay later"
+                    >
+
+                </article>
+
+                <article class="deal-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/1060/image/8b7a136114a3e1b3.jpg?q=60"
+                        alt="Shop now pay later"
+                    >
+
+                </article>
+
+                <article class="deal-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/1060/image/0f3170f948f71480.jpg?q=60"
+                        alt="Shop now pay later"
+                    >
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EXPLORE STORE
+        ===================================================== -->
+
+        <section class="content-section">
+
+            <h2 class="section-title">
+                Explore Store
+            </h2>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/38fc1f73ed0bb260.jpg?q=60"
+                        alt="Explore store"
+                    >
+
+                </article>
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/df06ab451c20e42f.png?q=60"
+                        alt="Explore store"
+                    >
+
+                </article>
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/d5ca7cedbc449a2a.png?q=60"
+                        alt="Explore store"
+                    >
+
+                </article>
+
+                <article class="feature-card">
+
+                    <img
+                        src="https://rukminim2.flixcart.com/fk-p-flap/700/920/image/6c2b6cfb71e1dfa8.png?q=60"
+                        alt="Explore store"
+                    >
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="flipkart-footer">
+
+
+        <div class="footer-main">
+
+
+            <!-- ABOUT -->
+
+            <div class="footer-column">
+
+                <div class="footer-title">
+                    About
+                </div>
+
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Flipkart Stories</a>
+                <a href="#">Press</a>
+                <a href="#">Corporate Information</a>
+
+            </div>
+
+
+            <!-- GROUP COMPANIES -->
+
+            <div class="footer-column">
+
+                <div class="footer-title">
+                    Group Companies
+                </div>
+
+                <a href="#">Myntra</a>
+                <a href="#">Cleartrip</a>
+                <a href="#">Shopsy</a>
+
+            </div>
+
+
+            <!-- HELP -->
+
+            <div class="footer-column">
+
+                <div class="footer-title">
+                    Help
+                </div>
+
+                <a href="#">Payments</a>
+                <a href="#">Shipping</a>
+                <a href="#">Cancellation & Returns</a>
+                <a href="#">FAQ</a>
+
+            </div>
+
+
+            <!-- CONSUMER POLICY -->
+
+            <div class="footer-column">
+
+                <div class="footer-title">
+                    Consumer Policy
+                </div>
+
+                <a href="#">Cancellation & Returns</a>
+                <a href="#">Terms Of Use</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Grievance Redressal</a>
+                <a href="#">EPR Compliance</a>
+                <a href="#">FSSAI Food Safety Connect App</a>
+
+            </div>
+
+
+            <!-- MAIL -->
+
+            <div class="footer-column footer-address">
+
+                <div class="footer-title">
+                    Mail Us:
+                </div>
+
+                <p>
+                    Flipkart Internet Private Limited,<br>
+                    Buildings Alyssa, Begonia &<br>
+                    Clove Embassy Tech Village,<br>
+                    Outer Ring Road,<br>
+                    Devarabeesanahalli Village,<br>
+                    Bengaluru, 560103,<br>
+                    Karnataka, India
+                </p>
+
+                <div class="social-title">
+                    Social:
+                </div>
+
+                <div class="social-icons">
+
+                    <span>ⓕ</span>
+                    <span>𝕏</span>
+                    <span>▶</span>
+                    <span>◎</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- REGISTERED OFFICE -->
+
+            <div class="footer-column footer-address">
+
+                <div class="footer-title">
+                    Registered Office Address:
+                </div>
+
+                <p>
+                    Flipkart Internet Private Limited,<br>
+                    Buildings Alyssa, Begonia &<br>
+                    Clove Embassy Tech Village,<br>
+                    Outer Ring Road,<br>
+                    Devarabeesanahalli Village,<br>
+                    Bengaluru, 560103,<br>
+                    Karnataka, India
+                </p>
+
+                <p>
+                    CIN : U51109KA2012PTC066107<br>
+                    Telephone: 044-45614700 / 044-67415800
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+
+
+            <div class="footer-bottom-left">
+
+                <div class="footer-bottom-item">
+
+                    <span class="footer-bottom-icon">
+                        ▣
+                    </span>
+
+                    <span>
+                        Become a Seller
+                    </span>
+
+                </div>
+
+
+                <div class="footer-bottom-item">
+
+                    <span class="footer-bottom-icon">
+                        ♧
+                    </span>
+
+                    <span>
+                        Advertise
+                    </span>
+
+                </div>
+
+
+                <div class="footer-bottom-item">
+
+                    <span class="footer-bottom-icon">
+                        ♧
+                    </span>
+
+                    <span>
+                        Gift Cards
+                    </span>
+
+                </div>
+
+
+                <div class="footer-bottom-item">
+
+                    <span class="footer-bottom-icon">
+                        ⓘ
+                    </span>
+
+                    <span>
+                        Help Center
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+                © 2007-2026 Flipkart.com
+            </div>
+
+
+            <div class="payment-methods">
+
+                <div class="payment">
+                    VISA
+                </div>
+
+                <div class="payment">
+                    ●●
+                </div>
+
+                <div class="payment">
+                    ●●
+                </div>
+
+                <div class="payment">
+                    ▤
+                </div>
+
+                <div class="payment">
+                    ◉
+                </div>
+
+                <div class="payment">
+                    DISCOVER
+                </div>
+
+                <div class="payment">
+                    RuPay
+                </div>
+
+                <div class="payment">
+                    NET<br>
+                    BANKING
+                </div>
+
+                <div class="payment">
+                    CASH ON<br>
+                    DELIVERY
+                </div>
+
+                <div class="payment">
+                    EASY EMI<br>
+                    OPTIONS
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* SEARCH */
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        searchInput.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    const searchValue =
+                        searchInput.value.trim();
+
+                    if (searchValue !== "") {
+
+                        alert(
+                            "Searching for: " +
+                            searchValue
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* CATEGORY ACTIVE STATE */
+
+        const categories =
+            document.querySelectorAll(".category");
+
+        categories.forEach(function (category) {
+
+            category.addEventListener(
+                "click",
+                function () {
+
+                    categories.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+                    category.classList.add("active");
+
+                }
+            );
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
